@@ -39,6 +39,13 @@ curl http://`boot2docker ip 2>/dev/null`:8500/v1/catalog/services
 open "http://`boot2docker ip 2>/dev/null`/"
 ```
 
+## Adding/Removing Backend Containers
+
+```shell
+fig scale app=4
+fig scale app=1
+```
+
 ## Gotchas
 * Auto-detected advertise IP for Consul-in-Docker on Boot2docker is not routable from the Nginx container. Use the following to look up the IP to set for `-advertise`:
 
