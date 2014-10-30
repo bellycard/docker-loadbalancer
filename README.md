@@ -4,7 +4,13 @@
 brew update
 brew install caskroom/cask/brew-cask
 brew cask install boot2docker
-brew install direnv fig
+brew install fig
+```
+
+Optionally, you can use `direnv` to automatically set some environment variables, sourced from `.envrc`:
+```shell
+brew install direnv
+direnv allow .
 ```
 
 ## Readying Docker
@@ -17,13 +23,13 @@ docker version
 docker ps
 ```
 
-## Boot A Variant
+## Boot The App
 
-From within the subdirectory:
+From the root of the repository:
 
 ```shell
 fig pull && fig build
-fig up
+fig up -d
 ```
 
 ## Inspection
@@ -47,7 +53,7 @@ fig scale app=1
 ```
 
 ## Gotchas
-* Auto-detected advertise IP for Consul-in-Docker on Boot2docker is not routable from the Nginx container. Use the following to look up the IP to set for `-advertise`:
+* The auto-detected advertise IP for Consul-in-Docker on Boot2docker does not appear to be routable from the Nginx container. Use the following to look up the IP to set for `-advertise`:
 
 ```shell
 boot2docker ssh ifconfig eth0 | grep 'inet addr'
