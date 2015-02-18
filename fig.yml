@@ -24,8 +24,8 @@ consul:
   - "8600:53/udp"
 
 registrator:
-  command: consul://consul:8500
-  image: progrium/registrator:latest
+  command: -internal consul://consul:8500
+  image: gliderlabs/registrator:latest
   links:
   - consul
   volumes:
