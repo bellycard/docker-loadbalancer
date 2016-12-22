@@ -1,9 +1,11 @@
 app:
   image: tutum/hello-world:latest
   environment:
-    SERVICE_80_NAME: http
     SERVICE_NAME: app
     SERVICE_TAGS: production
+    SERVICE_80_NAME: http
+    SERVICE_80_CHECK_HTTP: .
+    SERVICE_80_CHECK_INTERVAL: 15s
   ports:
   - "80"
 
@@ -22,6 +24,8 @@ consul:
   - "8400:8400"
   - "8500:8500"
   - "8600:53/udp"
+  volumes:
+  - "/var/run/docker.sock:/tmp/docker.sock"
 
 registrator:
   command: consul://consul:8500
